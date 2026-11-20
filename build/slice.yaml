@@ -112,5 +112,5 @@ cumulative:
   voted_pres_20:
     measure: categorical
     from: {2020: CC20_410, 2022: presvote20post, 2024: presvote20post}
-    where: "05_functions-stack.R std_name(): voted_pres_20 = CC20_410 (2020), presvote20post (2022, 2024)"
-    changes: [renamed]
+    where: "05_stack-cumulative.R: voted_pres_20 = clps_pres20(voted_pres_20), then 'Did not Vote for this Office' set to NA; clps_pres20() in 05_functions-stack.R collapses the labels to Joe Biden, Donald Trump, Jo Jorgensen, Howie Hawkins, Other, Undervote and Not Sure; std_name() there renames CC20_410 (2020) and presvote20post (2022, 2024) to voted_pres_20"
+    changes: [renamed, codes_changed, labels_changed]

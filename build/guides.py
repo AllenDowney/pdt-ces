@@ -54,7 +54,7 @@ def cumulative_entries(text, names):
             para.append(body[k])
             k += 1
         first = unwrap(para)
-        entry = {"title": title, "location": f"\"{name}: {title}\", p. {page[i]}"}
+        entry = {"title": title, "page": page[i], "location": f"\"{name}: {title}\", p. {page[i]}"}
         if first.startswith("“") or first.startswith('"'):
             entry["question"] = first
         elif first.startswith("["):
@@ -132,7 +132,7 @@ def yearly_entries(text, names):
             j -= 1
         if not block:
             continue
-        entry = {"location": f"p. {page[kept[i]]}"}
+        entry = {"page": page[kept[i]], "location": f"p. {page[kept[i]]}"}
         # A block is a short label and the question, or the question alone (2022 newsint).
         if len(block) > 1 and len(block[0].strip()) < 60:
             entry["label"] = " ".join(block[0].split())

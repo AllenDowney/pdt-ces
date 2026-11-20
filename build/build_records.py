@@ -4,7 +4,7 @@ Usage:
     python build/build_records.py [release ...]     # under the memory cap (CLAUDE.md)
 
 Reads build/slice.yaml and the sources in data/raw/ (sources.yaml). Writes
-metadata/releases/<release>/variables.jsonl, metadata/links.jsonl and build/report.md.
+metadata/releases/<release>/<table>/variables.jsonl, metadata/links.jsonl and build/report.md.
 
 Where each field comes from (STANDARD.md §3):
 - label, value labels, storage type, which codes occur and their counts: the Stata files
@@ -118,10 +118,10 @@ def build_variable(release, name, spec_entry, guide, frame, meta):
                                        + ("; a grid item is its stem, ' -- ' and the item's label."
                                           if guide.get("item") else ".")}
     if guide.get("notes"):
-        record["notes"] = guide["notes"]
+        record["notes"] = "\n\n".join(guide["notes"])
         fields["notes"] = {"origin": "rule", "rule": "ces_guide_text", "rule_version": RULE_VERSION,
                            "source": guide_src, "location": guide["location"],
-                           "note": "The guide's bullets other than Years, with layout line breaks removed."}
+                           "note": "The guide's bullets other than Years, one paragraph each, with layout line breaks removed."}
 
     numbers = [v for v in col if is_number(v)]
     strings = [v for v in col if isinstance(v, str)]
@@ -201,7 +201,7 @@ def build_variable(release, name, spec_entry, guide, frame, meta):
                               f"years with data: only the guide {sorted(set(claimed) - set(present))}, "
                               f"only the data {sorted(set(present) - set(claimed))}")
     source = guide_src if guide else data_src
-    record["source_location"] = {"source": source, **({"location": guide["location"]} if guide.get("location") else {})}
+    record["source_location"] = {"source": source, **({"page": guide["page"]} if guide.get("page") else {})}
     record["provenance"] = {"record": {"origin": "publisher" if guide else "data_file", "source": source},
                             "fields": fields}
     return record, report
@@ -244,6 +244,34 @@ def build_links(spec, built):
     return links, report
 
 
+def yearly_links(records):
+    """Rule ces_same_name_same_documentation: between consecutive yearly releases, the same name
+    with the same question text and the same codes and labels is the same item. The CES keeps
+    a name for a continuing item (pid7, educ) and puts the year in the names of its yearly items
+    (CC20_302, CC22_302), so a shared name is the publisher's convention for continuity. Pairs
+    whose documentation differs are reported, not linked."""
+    def doc(r):
+        return ([q.get("text") for q in r.get("questions", [])],
+                [(v["code"], v["label"], v["kind"]) for v in r.get("values", []) if v["code"] != "."])
+    links, report = [], []
+    years = [r for r in RELEASES if r != "cumulative"]
+    for a, b in zip(years, years[1:]):
+        ra = {r["name"]: r for r in records.get(a, [])}
+        rb = {r["name"]: r for r in records.get(b, [])}
+        for name in sorted(set(ra) & set(rb)):
+            if doc(ra[name]) == doc(rb[name]):
+                links.append({"from": {"release": a, "table": "common", "name": name},
+                              "to": {"release": b, "table": "common", "name": name},
+                              "relations": ["same_item"],
+                              "origin": {"origin": "rule", "rule": "ces_same_name_same_documentation",
+                                         "rule_version": RULE_VERSION, "source": RELEASES[b]["guide"],
+                                         "note": "Same name, question text, and codes and labels in both releases."}})
+            else:
+                report.append(f"`{name}` {a} -> {b}: same name, different documentation; not linked "
+                              "(see pdt diff)")
+    return links, report
+
+
 def compare_codes(spec, frames):
     """Where the cumulative file's codes for a year differ from the yearly file's (a check only)."""
     out = []
@@ -271,7 +299,7 @@ def compare_codes(spec, frames):
 def main(releases=None):
     spec = load_slice()
     releases = releases or list(RELEASES)
-    built, frames, report = set(), {}, []
+    built, frames, report, all_records = set(), {}, [], {}
     for release in releases:
         names = names_for(spec, release)
         conf = RELEASES[release]
@@ -298,11 +326,15 @@ def main(releases=None):
             records.append(rec)
             report += rep
             built.add((release, name))
-        write_jsonl(META / "releases" / release / "variables.jsonl", records)
+        all_records[release] = records
+        write_jsonl(META / "releases" / release / conf["table"] / "variables.jsonl", records)
         frames[release] = frame
         print(f"{release}: {len(records)} records", file=sys.stderr)
     if set(releases) == set(RELEASES):
         links, rep = build_links(spec, built)
+        report += rep
+        more, rep = yearly_links(all_records)
+        links += more
         report += rep
         write_jsonl(META / "links.jsonl", links)
         checks = compare_codes(spec, frames)

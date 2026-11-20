@@ -14,6 +14,9 @@ sources:
     releases: ["cumulative"]
     redistribution: unknown
     acquisition: automated
+    fetched_on: "2026-11-20"
+    bytes: 724803550
+    sha256: 08f910b88c62a7448e1b3c18f04c92faa84e87dcc7120fe85b1a29fc4c508018
   - id: cumulative-guide
     title: "Guide to the Cumulative Common Content of the Cooperative (Congressional) Election Study, 2026-07-14 (Kuriwaki)"
     kind: codebook
@@ -25,6 +28,9 @@ sources:
     documents: ["cumulative"]
     redistribution: unknown
     acquisition: automated
+    fetched_on: "2026-11-20"
+    bytes: 127891
+    sha256: bc8770e2ba96eb0142bac5572f9979ba99b22b8790069b793ef168281f3ee9b6
   - id: cumulative-build-read
     title: "cces_cumulative build code: 03_read-common.R (reads each year's file and its case id)"
     kind: crosswalk
@@ -36,6 +42,9 @@ sources:
     documents: ["cumulative"]
     redistribution: unknown
     acquisition: automated
+    fetched_on: "2026-11-20"
+    bytes: 13316
+    sha256: 7950ad3fd434d6e78b1a0190493b72df66601604bbea7326b13f2312dffd12fb
     note: >
       The cumulative file's own build code, by its author, linked from the guide as its
       "source code repository". The repository has no license file. Its renames and recodes
@@ -51,6 +60,9 @@ sources:
     documents: ["cumulative"]
     redistribution: unknown
     acquisition: automated
+    fetched_on: "2026-11-20"
+    bytes: 53274
+    sha256: 7c267e59dda045a46536fce08bf4365c59d71272386647f7cc50fdfa36a5bfb6
   - id: cumulative-build-stack
     title: "cces_cumulative build code: 05_stack-cumulative.R (which variables are stacked, unrenamed)"
     kind: crosswalk
@@ -62,6 +74,9 @@ sources:
     documents: ["cumulative"]
     redistribution: unknown
     acquisition: automated
+    fetched_on: "2026-11-20"
+    bytes: 16792
+    sha256: 9ee690243449d38825c682ece30fcd29346891cdbe3a4e24501ff54f320049b1
   - id: ces2020-dta
     title: "Cooperative Election Study Common Content, 2020 (Dataverse version 4.0), Stata file"
     kind: data
@@ -71,6 +86,9 @@ sources:
     releases: ["2020"]
     redistribution: unknown
     acquisition: automated
+    fetched_on: "2026-11-20"
+    bytes: 850122457
+    sha256: 4e86e08b0367db6f33b9a35bd9976e942aee0a426911d56e4275f05344f422a6
   - id: ces2020-guide
     title: "CCES Guide 2020 (codebook and methodology)"
     kind: codebook
@@ -82,6 +100,9 @@ sources:
     documents: ["2020"]
     redistribution: unknown
     acquisition: automated
+    fetched_on: "2026-11-20"
+    bytes: 249876
+    sha256: 89aa47231b16a75066cb5c0b3da58c7ae5d763d4f190d49b5cca7b5ce5e9f1f8
   - id: ces2022-dta
     title: "Cooperative Election Study Common Content, 2022 (Dataverse version 4.0), Stata file"
     kind: data
@@ -91,6 +112,9 @@ sources:
     releases: ["2022"]
     redistribution: unknown
     acquisition: automated
+    fetched_on: "2026-11-20"
+    bytes: 878726151
+    sha256: 42b144656e807b93d8a779f69dfc38c80a79e49ce6f12af99c225704bbccd571
   - id: ces2022-guide
     title: "CES Guide 2022 (codebook and methodology)"
     kind: codebook
@@ -102,6 +126,9 @@ sources:
     documents: ["2022"]
     redistribution: unknown
     acquisition: automated
+    fetched_on: "2026-11-20"
+    bytes: 252626
+    sha256: 300af375547c30b35cf5bf1de3dde7eab694e22b08fab68c2b875d8994925968
   - id: ces2024-dta
     title: "Cooperative Election Study Common Content, 2024 (Dataverse version 9.0), Stata file"
     kind: data
@@ -111,6 +138,9 @@ sources:
     releases: ["2024"]
     redistribution: unknown
     acquisition: automated
+    fetched_on: "2026-11-20"
+    bytes: 993493917
+    sha256: e4b5220cf96a9e7a1c3860e82a19be99416d206da0c728264d0c7a2fa8dd7d4c
   - id: ces2024-guide
     title: "CES 2024 Guide (codebook and methodology)"
     kind: codebook
@@ -122,3 +152,6 @@ sources:
     documents: ["2024"]
     redistribution: unknown
     acquisition: automated
+    fetched_on: "2026-11-20"
+    bytes: 241167
+    sha256: b10eee48f7cb68aa6d32c014bee4cbe489eb944f3a2a4715c679749f3270ea98
