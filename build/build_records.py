@@ -261,6 +261,8 @@ def yearly_links(records):
         ra = {r["name"]: r for r in records.get(a, [])}
         rb = {r["name"]: r for r in records.get(b, [])}
         for name in sorted(set(ra) & set(rb)):
+            if ra[name].get("measure") == "identifier":
+                continue  # each year's sample is different people: no link that invites a join
             if doc(ra[name]) == doc(rb[name]):
                 links.append({"from": {"release": a, "table": "common", "name": name},
                               "to": {"release": b, "table": "common", "name": name},
@@ -289,6 +291,8 @@ def crosswalk_links(spec, built, linked, records):
     years = [int(r) for r in RELEASES if r != "cumulative"]
     for name, entry in spec["cumulative"].items():
         src = entry.get("from") or {}
+        if entry.get("measure") == "identifier":
+            continue  # case ids identify different respondents each year; never link them as one item
         def unchanged(y):
             changes = (entry.get("changes_by_year") or {}).get(y, entry.get("changes", []))
             return set(changes) <= {"renamed"}
