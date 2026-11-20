@@ -33,7 +33,7 @@ sources:
     sha256: bc8770e2ba96eb0142bac5572f9979ba99b22b8790069b793ef168281f3ee9b6
   - id: cumulative-build-read
     title: "cces_cumulative build code: 03_read-common.R (reads each year's file and its case id)"
-    kind: crosswalk
+    kind: code
     format: R
     url: "https://raw.githubusercontent.com/kuriwaki/cces_cumulative/0fd71dbb5523a2795d57c3b2081b818acffd567c/03_read-common.R"
     path: data/raw/cces_cumulative/03_read-common.R
@@ -51,7 +51,7 @@ sources:
       are the source for this repo's derived_from links.
   - id: cumulative-build-functions
     title: "cces_cumulative build code: 05_functions-stack.R (std_name(): each year's renames and recodes)"
-    kind: crosswalk
+    kind: code
     format: R
     url: "https://raw.githubusercontent.com/kuriwaki/cces_cumulative/0fd71dbb5523a2795d57c3b2081b818acffd567c/05_functions-stack.R"
     path: data/raw/cces_cumulative/05_functions-stack.R
@@ -65,7 +65,7 @@ sources:
     sha256: 7c267e59dda045a46536fce08bf4365c59d71272386647f7cc50fdfa36a5bfb6
   - id: cumulative-build-stack
     title: "cces_cumulative build code: 05_stack-cumulative.R (which variables are stacked, unrenamed)"
-    kind: crosswalk
+    kind: code
     format: R
     url: "https://raw.githubusercontent.com/kuriwaki/cces_cumulative/0fd71dbb5523a2795d57c3b2081b818acffd567c/05_stack-cumulative.R"
     path: data/raw/cces_cumulative/05_stack-cumulative.R

@@ -1,6 +1,6 @@
 {
  "pdt_version": "0.1.0",
- "inputs_sha256": "6d6159c05f28e4080492e680b5d18e9261347f4969886d2bfe2297b4e2ec3074",
+ "inputs_sha256": "81c201c4dad83e58698f3b78fd0d8e25ddc99bde31d0758fdf98b33d239bdefc",
  "generator_sha256": "9ccfde4fa108cb2b4d7e1cdf675082febafe78bc8e89a2be78db6a98e3a26059",
  "dataset": "ces",
  "files": [
@@ -25,9 +25,7 @@
   "variables/common/CC24_301.html",
   "variables/common/CC24_312a.html",
   "variables/common/CC24_363.html",
-  "variables/common/birthyr%402022.html",
   "variables/common/birthyr.html",
-  "variables/common/caseid%402020.html",
   "variables/common/caseid.html",
   "variables/common/commonweight.html",
   "variables/common/educ.html",
