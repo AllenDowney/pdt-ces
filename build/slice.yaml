@@ -1,9 +1,116 @@
 # The variables to build, and facts the sources don't give (origin: hand).
 # Edited by hand; read by build/build_records.py.
-release: "cumulative"
-# Start with 30-50 variables that include the hard cases: a battery, an item
-# asked on only some forms, several wordings, several kinds of missing codes,
-# and anything the publisher has corrected (instructions/03-parse-documentation.md).
-variables: {}
-#  name:
-#    measure: categorical   # categorical, ordinal, continuous, count, identifier, weight, text, date
+#
+# `cumulative` lists the cumulative file's variables in this slice. For each, `from`
+# gives the yearly common-content variable it is built from, per year, as the
+# cumulative file's build code says (kuriwaki/cces_cumulative at the commit in
+# sources.yaml): a rename in std_name() in 05_functions-stack.R, or the same name
+# when the code stacks it unrenamed with find_stack() in 05_stack-cumulative.R.
+# `where` quotes that code. `changes` lists what the code does to the values beyond
+# stacking (renames, recodes), which become relations on the link; `changes_by_year`
+# overrides it for one year.
+#
+# Each yearly release's variables are the `from` names for that year.
+# `measure` is a hand judgment (Claude, PublicDataToolkit Task 59).
+
+years: [2020, 2022, 2024]
+
+cumulative:
+  year:
+    measure: identifier
+  case_id:
+    measure: identifier
+    from: {2020: caseid, 2022: caseid, 2024: caseid}
+    where: "03_read-common.R: rename(case_id = !!orig_key), where orig_key is the file's caseid"
+    changes: [renamed]
+  weight:
+    measure: weight
+    from: {2020: commonweight, 2022: commonweight, 2024: commonweight}
+    where: "05_functions-stack.R std_name(): weight = commonweight"
+    changes: [renamed]
+  weight_cumulative:
+    measure: weight
+    from: {2020: commonweight, 2022: commonweight, 2024: commonweight}
+    where: "05_stack-cumulative.R: weight_cumulative = weight / size_factor"
+    changes: [renamed, codes_changed]
+  gender:
+    measure: categorical
+    from: {2020: gender, 2022: gender4, 2024: gender4}
+    where: "05_functions-stack.R std_name(): for 2021-2025, gender = labelled(zap_labels(gender4), c('Male' = 1, 'Female' = 2)), with 3 and 4 set to NA; earlier years keep gender"
+    changes_by_year: {2022: [renamed, codes_changed, labels_changed], 2024: [renamed, codes_changed, labels_changed]}
+  gender4:
+    measure: categorical
+    from: {2022: gender4, 2024: gender4}
+    where: "05_stack-cumulative.R: find_stack(ccs, gender4)"
+  sex:
+    measure: categorical
+    from: {2020: gender}
+    where: "05_functions-stack.R std_name(): before 2021, mutate(sex = gender)"
+    changes: [renamed]
+  birthyr:
+    measure: continuous
+    from: {2020: birthyr, 2022: birthyr, 2024: birthyr}
+    where: "05_stack-cumulative.R: find_stack(ccs, birthyr)"
+  educ:
+    measure: ordinal
+    from: {2020: educ, 2022: educ, 2024: educ}
+    where: "05_stack-cumulative.R: find_stack(ccs, educ)"
+  race:
+    measure: categorical
+    from: {2020: race, 2022: race, 2024: race}
+    where: "05_functions-stack.R std_name(): race = replace_labels(race, labels = c('Mixed' = 6)); 05_stack-cumulative.R: find_stack(ccs, race)"
+    changes: [labels_changed]
+  hispanic:
+    measure: categorical
+    from: {2020: hispanic, 2022: hispanic, 2024: hispanic}
+    where: "05_stack-cumulative.R: find_stack(ccs, hispanic)"
+  pid3:
+    measure: categorical
+    from: {2020: pid3, 2022: pid3, 2024: pid3}
+    where: "05_stack-cumulative.R: find_stack(ccs, pid3), then finalize_pid3()"
+  pid7:
+    measure: ordinal
+    from: {2020: pid7, 2022: pid7, 2024: pid7}
+    where: "05_stack-cumulative.R: find_stack(ccs, pid7)"
+  ideo5:
+    measure: ordinal
+    from: {2020: ideo5, 2022: ideo5, 2024: ideo5}
+    where: "05_stack-cumulative.R: find_stack(ccs, ideo5)"
+  faminc:
+    measure: ordinal
+    from: {2020: faminc_new, 2022: faminc_new, 2024: faminc_new}
+    where: "05_functions-stack.R std_name(): faminc = faminc_new; finalize_faminc() coarsens the brackets"
+    changes: [renamed, codes_changed]
+  employ:
+    measure: categorical
+    from: {2020: employ, 2022: employ, 2024: employ}
+    where: "05_stack-cumulative.R: find_stack(ccs, employ)"
+  marstat:
+    measure: categorical
+    from: {2020: marstat, 2022: marstat, 2024: marstat}
+    where: "05_functions-stack.R std_name(): add_value_labels(marstat = c('Domestic Partnership' = 6, 'Single' = 5))"
+    changes: [labels_changed]
+  newsint:
+    measure: ordinal
+    from: {2020: newsint, 2022: newsint, 2024: newsint}
+    where: "05_stack-cumulative.R: find_stack(ccs, newsint)"
+  approval_pres:
+    measure: ordinal
+    from: {2020: CC20_320a, 2022: CC22_320a, 2024: CC24_312a}
+    where: "05_functions-stack.R std_name(): approval_pres = CC20_320a (2020), CC22_320a (2022), CC24_312a (2024)"
+    changes: [renamed]
+  economy_retro:
+    measure: ordinal
+    from: {2020: CC20_302, 2022: CC22_302, 2024: CC24_301}
+    where: "05_functions-stack.R std_name(): economy_retro = CC20_302 (2020), CC22_302 (2022), CC24_301 (2024)"
+    changes: [renamed]
+  intent_trn:
+    measure: categorical
+    from: {2020: CC20_363, 2022: CC22_363, 2024: CC24_363}
+    where: "05_functions-stack.R std_name(): intent_trn = CC20_363 (2020), CC22_363 (2022), CC24_363 (2024)"
+    changes: [renamed]
+  voted_pres_20:
+    measure: categorical
+    from: {2020: CC20_410, 2022: presvote20post, 2024: presvote20post}
+    where: "05_functions-stack.R std_name(): voted_pres_20 = CC20_410 (2020), presvote20post (2022, 2024)"
+    changes: [renamed]
