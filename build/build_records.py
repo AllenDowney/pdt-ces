@@ -144,7 +144,7 @@ def build_variable(release, name, spec_entry, guide, frame, meta):
     values = []
     for code, lab in value_labels.items():
         code = as_code(code)
-        entry = {"code": code, "label": lab, "kind": "valid", "n": counts.get(code, 0)}
+        entry = {"code": code, "label": lab, "kind": "valid"}
         types = [t for pat, t in MISSING_LABELS if pat.search(lab.strip())]
         if types:
             entry.update(kind="missing", missing_types=types,
@@ -155,14 +155,13 @@ def build_variable(release, name, spec_entry, guide, frame, meta):
     if value_labels:
         for code, n in sorted(counts.items()):
             if code not in labelled:
-                values.append({"code": code, "label": "", "kind": "unresolved", "n": n,
+                values.append({"code": code, "label": "", "kind": "unresolved",
                                "origin": {"origin": "data_file", "source": data_src,
                                           "note": f"Occurs {n} times in the data; the file has no label for it."}})
                 report.append(f"`{release}` `{name}` code {code}: occurs {n} times, no value label; unresolved")
     if n_null and (values or record.get("measure") not in {"identifier", "weight"}):
         if release == "cumulative":
             values.append({"code": ".", "label": "(Missing)", "kind": "missing", "missing_types": ["unspecified"],
-                           "n": n_null,
                            "origin": {"origin": "rule", "rule": "ces_system_missing", "rule_version": RULE_VERSION,
                                       "source": guide_src,
                                       "note": "Stata system missing. The guide's tabulations print it as "
@@ -171,7 +170,6 @@ def build_variable(release, name, spec_entry, guide, frame, meta):
                                               "as NA, and the build code sets recoded-out categories to NA."}})
         else:
             values.append({"code": ".", "label": "", "kind": "missing", "missing_types": ["skipped", "not_asked"],
-                           "n": n_null,
                            "origin": {"origin": "publisher", "source": guide_src,
                                       "location": "Part III, Common Content, introduction",
                                       "note": "Stata system missing. The guide: \"Observations with missing values "
@@ -181,7 +179,7 @@ def build_variable(release, name, spec_entry, guide, frame, meta):
     if values:
         record["values"] = values
         fields.setdefault("values", {"origin": "data_file", "source": data_src,
-                                     "note": "Codes and labels from the Stata value labels; n counts the data."})
+                                     "note": "Codes and labels from the Stata value labels, and codes that occur in the data."})
     elif numbers and record.get("measure") in {"continuous", "weight", "identifier"}:
         record["valid_range"] = {"min": as_code(min(numbers)), "max": as_code(max(numbers))}
         fields["valid_range"] = {"origin": "data_file", "source": data_src, "note": "Min and max of the values that occur."}
@@ -246,12 +244,13 @@ def build_links(spec, built):
 
 def yearly_links(records):
     """Rule ces_same_name_same_documentation: between consecutive yearly releases, the same name
-    with the same question text and the same codes and labels is the same item. The CES keeps
+    with the same label, question text, and codes and labels is the same item. The CES keeps
     a name for a continuing item (pid7, educ) and puts the year in the names of its yearly items
     (CC20_302, CC22_302), so a shared name is the publisher's convention for continuity. Pairs
     whose documentation differs are reported, not linked."""
     def doc(r):
-        return ([q.get("text") for q in r.get("questions", [])],
+        return (" ".join((r.get("label") or "").casefold().split()),
+                [q.get("text") for q in r.get("questions", [])],
                 [(v["code"], v["label"], v["kind"]) for v in r.get("values", []) if v["code"] != "."])
     links, report = [], []
     years = [r for r in RELEASES if r != "cumulative"]
@@ -265,7 +264,7 @@ def yearly_links(records):
                               "relations": ["same_item"],
                               "origin": {"origin": "rule", "rule": "ces_same_name_same_documentation",
                                          "rule_version": RULE_VERSION, "source": RELEASES[b]["guide"],
-                                         "note": "Same name, question text, and codes and labels in both releases."}})
+                                         "note": "Same name, label (ignoring case and spacing), question text, and codes and labels in both releases."}})
             else:
                 report.append(f"`{name}` {a} -> {b}: same name, different documentation; not linked "
                               "(see pdt diff)")

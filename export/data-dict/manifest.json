@@ -1,0 +1,53 @@
+{
+ "pdt_version": "0.1.0",
+ "inputs_sha256": "362cde0a0e965686b9715376f90bdf889839f62f797819d44caf70d234be3658",
+ "generator_sha256": "9ccfde4fa108cb2b4d7e1cdf675082febafe78bc8e89a2be78db6a98e3a26059",
+ "dataset": "ces",
+ "spec": "0.1.0",
+ "files": [
+  "cumulative.yaml",
+  "2020.yaml",
+  "2022.yaml",
+  "2024.yaml",
+  "LOSSES.md"
+ ],
+ "losses": {
+  "cumulative": {
+   "release_version": 1,
+   "variables": 22,
+   "availability": 387,
+   "provenance_fields": 167,
+   "untyped": 1,
+   "numeric_code_labels": 17,
+   "missing_codes": 25,
+   "links": 86
+  },
+  "2020": {
+   "release_version": 1,
+   "variables": 18,
+   "availability": 18,
+   "provenance_fields": 123,
+   "numeric_code_labels": 15,
+   "missing_codes": 49,
+   "links": 86
+  },
+  "2022": {
+   "release_version": 1,
+   "variables": 18,
+   "availability": 18,
+   "provenance_fields": 123,
+   "numeric_code_labels": 15,
+   "missing_codes": 48,
+   "links": 86
+  },
+  "2024": {
+   "release_version": 1,
+   "variables": 18,
+   "availability": 18,
+   "provenance_fields": 124,
+   "numeric_code_labels": 15,
+   "missing_codes": 47,
+   "links": 86
+  }
+ }
+}

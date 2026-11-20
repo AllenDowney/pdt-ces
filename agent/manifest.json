@@ -1,0 +1,153 @@
+{
+ "pdt_version": "0.1.0",
+ "inputs_sha256": "362cde0a0e965686b9715376f90bdf889839f62f797819d44caf70d234be3658",
+ "generator_sha256": "9ccfde4fa108cb2b4d7e1cdf675082febafe78bc8e89a2be78db6a98e3a26059",
+ "dataset": "ces",
+ "max_tokens": 20000,
+ "shards": [
+  {
+   "kind": "table",
+   "title": "Release cumulative, table cumulative",
+   "basis": "every variable in the table",
+   "full_records": [
+    "metadata/releases/cumulative/cumulative/variables.jsonl"
+   ],
+   "completeness": "complete",
+   "filter": {
+    "release": "cumulative",
+    "table": "cumulative"
+   },
+   "releases": [
+    "cumulative"
+   ],
+   "n_in_scope": 22,
+   "rule_versions": {},
+   "notes": [],
+   "count": 22,
+   "files": [
+    {
+     "path": "shards/table/cumulative-cumulative.jsonl",
+     "form": "jsonl",
+     "variables": 22,
+     "tokens": 8247
+    },
+    {
+     "path": "shards/table/cumulative-cumulative.txt",
+     "form": "txt",
+     "variables": 22,
+     "tokens": 929
+    }
+   ]
+  },
+  {
+   "kind": "table",
+   "title": "Release 2020, table common",
+   "basis": "every variable in the table",
+   "full_records": [
+    "metadata/releases/2020/common/variables.jsonl"
+   ],
+   "completeness": "complete",
+   "filter": {
+    "release": "2020",
+    "table": "common"
+   },
+   "releases": [
+    "2020"
+   ],
+   "n_in_scope": 18,
+   "rule_versions": {},
+   "notes": [],
+   "count": 18,
+   "files": [
+    {
+     "path": "shards/table/2020-common.jsonl",
+     "form": "jsonl",
+     "variables": 18,
+     "tokens": 7191
+    },
+    {
+     "path": "shards/table/2020-common.txt",
+     "form": "txt",
+     "variables": 18,
+     "tokens": 584
+    }
+   ]
+  },
+  {
+   "kind": "table",
+   "title": "Release 2022, table common",
+   "basis": "every variable in the table",
+   "full_records": [
+    "metadata/releases/2022/common/variables.jsonl"
+   ],
+   "completeness": "complete",
+   "filter": {
+    "release": "2022",
+    "table": "common"
+   },
+   "releases": [
+    "2022"
+   ],
+   "n_in_scope": 18,
+   "rule_versions": {},
+   "notes": [],
+   "count": 18,
+   "files": [
+    {
+     "path": "shards/table/2022-common.jsonl",
+     "form": "jsonl",
+     "variables": 18,
+     "tokens": 7168
+    },
+    {
+     "path": "shards/table/2022-common.txt",
+     "form": "txt",
+     "variables": 18,
+     "tokens": 591
+    }
+   ]
+  },
+  {
+   "kind": "table",
+   "title": "Release 2024, table common",
+   "basis": "every variable in the table",
+   "full_records": [
+    "metadata/releases/2024/common/variables.jsonl"
+   ],
+   "completeness": "complete",
+   "filter": {
+    "release": "2024",
+    "table": "common"
+   },
+   "releases": [
+    "2024"
+   ],
+   "n_in_scope": 18,
+   "rule_versions": {},
+   "notes": [],
+   "count": 18,
+   "files": [
+    {
+     "path": "shards/table/2024-common.jsonl",
+     "form": "jsonl",
+     "variables": 18,
+     "tokens": 7033
+    },
+    {
+     "path": "shards/table/2024-common.txt",
+     "form": "txt",
+     "variables": 18,
+     "tokens": 597
+    }
+   ]
+  }
+ ],
+ "release_shards": 12,
+ "across_releases": [
+  {
+   "path": "variables.txt",
+   "variables": 50,
+   "tokens": 1637
+  }
+ ]
+}
