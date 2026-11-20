@@ -12,7 +12,7 @@ sources:
     url: "https://dataverse.harvard.edu/api/access/datafile/14076515"
     path: data/raw/cumulative_2006-2025.dta
     releases: ["cumulative"]
-    redistribution: unknown
+    redistribution: ship
     acquisition: automated
     fetched_on: "2026-11-20"
     bytes: 724803550
@@ -26,7 +26,7 @@ sources:
     convert: "pdftotext -layout (poppler 24.02)"
     releases: ["cumulative"]
     documents: ["cumulative"]
-    redistribution: unknown
+    redistribution: ship
     acquisition: automated
     fetched_on: "2026-11-20"
     bytes: 127891
@@ -40,7 +40,7 @@ sources:
     version: 0fd71dbb5523a2795d57c3b2081b818acffd567c
     releases: ["cumulative"]
     documents: ["cumulative"]
-    redistribution: unknown
+    redistribution: build-only
     acquisition: automated
     fetched_on: "2026-11-20"
     bytes: 13316
@@ -58,7 +58,7 @@ sources:
     version: 0fd71dbb5523a2795d57c3b2081b818acffd567c
     releases: ["cumulative"]
     documents: ["cumulative"]
-    redistribution: unknown
+    redistribution: build-only
     acquisition: automated
     fetched_on: "2026-11-20"
     bytes: 53274
@@ -72,7 +72,7 @@ sources:
     version: 0fd71dbb5523a2795d57c3b2081b818acffd567c
     releases: ["cumulative"]
     documents: ["cumulative"]
-    redistribution: unknown
+    redistribution: build-only
     acquisition: automated
     fetched_on: "2026-11-20"
     bytes: 16792
@@ -84,7 +84,7 @@ sources:
     url: "https://dataverse.harvard.edu/api/access/datafile/4949545"
     path: data/raw/CES20_Common_OUTPUT_vv.dta
     releases: ["2020"]
-    redistribution: unknown
+    redistribution: ship
     acquisition: automated
     fetched_on: "2026-11-20"
     bytes: 850122457
@@ -98,7 +98,7 @@ sources:
     convert: "pdftotext -layout (poppler 24.02)"
     releases: ["2020"]
     documents: ["2020"]
-    redistribution: unknown
+    redistribution: ship
     acquisition: automated
     fetched_on: "2026-11-20"
     bytes: 249876
@@ -110,7 +110,7 @@ sources:
     url: "https://dataverse.harvard.edu/api/access/datafile/10140881"
     path: data/raw/CCES22_Common_OUTPUT_vv_topost.dta
     releases: ["2022"]
-    redistribution: unknown
+    redistribution: ship
     acquisition: automated
     fetched_on: "2026-11-20"
     bytes: 878726151
@@ -124,7 +124,7 @@ sources:
     convert: "pdftotext -layout (poppler 24.02)"
     releases: ["2022"]
     documents: ["2022"]
-    redistribution: unknown
+    redistribution: ship
     acquisition: automated
     fetched_on: "2026-11-20"
     bytes: 252626
@@ -136,7 +136,7 @@ sources:
     url: "https://dataverse.harvard.edu/api/access/datafile/12050327"
     path: data/raw/CCES24_Common_OUTPUT_vv_topost_final.dta
     releases: ["2024"]
-    redistribution: unknown
+    redistribution: ship
     acquisition: automated
     fetched_on: "2026-11-20"
     bytes: 993493917
@@ -150,7 +150,7 @@ sources:
     convert: "pdftotext -layout (poppler 24.02)"
     releases: ["2024"]
     documents: ["2024"]
-    redistribution: unknown
+    redistribution: ship
     acquisition: automated
     fetched_on: "2026-11-20"
     bytes: 241167

@@ -15,16 +15,19 @@ description: "A large online survey of U.S. adults about elections and politics,
 terms:
   url: "https://creativecommons.org/publicdomain/zero/1.0/"
   summary: >-
-    Not yet reviewed (for Allen). What the sources say: each Dataverse dataset used here
+    What the sources say: each Dataverse dataset used here
     (Cumulative CES Common Content, doi:10.7910/DVN/II2DB6, and the Common Content of 2020,
     2022 and 2024, doi:10.7910/DVN/E9N6PH, PR4L8P and X11EP6) shows the license "CC0 1.0"
     in its Dataverse metadata, with no custom terms of use. The cumulative file's build code
     (github.com/kuriwaki/cces_cumulative) has no license file; this repo reads it for the
     variable mapping and doesn't redistribute it.
-  data: unknown
-  documentation: unknown
-  metadata: unknown
-  llm_processing: unknown
+  data: ship
+  documentation: ship
+  metadata: ship
+  llm_processing: allowed
+  reviewed_by: Allen Downey
+  reviewed_on: '2026-11-20'
+  notice: "Source: Cooperative Election Study (CES), Common Content 2020, 2022 and 2024, and the Cumulative CES Common Content, Harvard Dataverse, released under CC0 1.0."
 dimensions:
   wave:
     label: "year"

@@ -12,7 +12,11 @@ A large online survey of U.S. adults about elections and politics, run by YouGov
 
 ## Terms of use
 
-The terms are at https://creativecommons.org/publicdomain/zero/1.0/. They haven't been reviewed yet, so nothing built from this repo may ship (STANDARD.md §8). Once a person has decided them, summarize them here; the decision is in [`dataset.yaml`](dataset.yaml).
+The terms are at https://creativecommons.org/publicdomain/zero/1.0/. Allen Downey reviewed the terms on 2026-11-20: the Dataverse data and guides are CC0 1.0, and the metadata, documentation and common-format data ship, with this notice:
+
+> Source: Cooperative Election Study (CES), Common Content 2020, 2022 and 2024, and the Cumulative CES Common Content, Harvard Dataverse, released under CC0 1.0.
+
+The cumulative file's build code (github.com/kuriwaki/cces_cumulative) has no license; it's read for the variable mapping and not redistributed.
 
 ## How to get the data
 
