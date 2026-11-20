@@ -20,7 +20,7 @@ sources:
     format: pdf
     url: "https://dataverse.harvard.edu/api/access/datafile/14076560"
     path: data/raw/guide_cumulative_2006-2025.txt
-    convert: "pdftotext -layout"
+    convert: "pdftotext -layout (poppler 24.02)"
     releases: ["cumulative"]
     documents: ["cumulative"]
     redistribution: unknown
@@ -77,7 +77,7 @@ sources:
     format: pdf
     url: "https://dataverse.harvard.edu/api/access/datafile/5793681"
     path: data/raw/CCES_Guide_2020.txt
-    convert: "pdftotext -layout"
+    convert: "pdftotext -layout (poppler 24.02)"
     releases: ["2020"]
     documents: ["2020"]
     redistribution: unknown
@@ -97,7 +97,7 @@ sources:
     format: pdf
     url: "https://dataverse.harvard.edu/api/access/datafile/7359254"
     path: data/raw/CES_Guide_2022.txt
-    convert: "pdftotext -layout"
+    convert: "pdftotext -layout (poppler 24.02)"
     releases: ["2022"]
     documents: ["2022"]
     redistribution: unknown
@@ -117,7 +117,7 @@ sources:
     format: pdf
     url: "https://dataverse.harvard.edu/api/access/datafile/12050326"
     path: data/raw/CES_2024_GUIDE_vv.txt
-    convert: "pdftotext -layout"
+    convert: "pdftotext -layout (poppler 24.02)"
     releases: ["2024"]
     documents: ["2024"]
     redistribution: unknown

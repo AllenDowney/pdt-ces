@@ -11,8 +11,9 @@ Where each field comes from (STANDARD.md §3):
 - question text, description and notes: the guides (build/guides.py)
 - measure: build/slice.yaml (hand)
 - missing codes: the cumulative file stores missing as Stata's system missing (.), which its
-  guide prints as "(Missing)" without saying why (rule ces_system_missing). The yearly files'
-  missing codes are typed by rule ces_missing_from_label.
+  guide prints as "(Missing)" without saying why (rule ces_system_missing). In a yearly file,
+  system missing means skipped or not asked, as its guide says (Part III's introduction).
+  Labelled codes such as "Not sure" are typed by rule ces_missing_from_label.
 - links: the cumulative file's build code (derived_from, with the relations its renames and
   recodes imply), cited by file and quoted in `note`.
 """
@@ -169,11 +170,14 @@ def build_variable(release, name, spec_entry, guide, frame, meta):
                                               "example, that 2016's \"Not Asked\" and \"Skipped\" are both coded "
                                               "as NA, and the build code sets recoded-out categories to NA."}})
         else:
-            values.append({"code": ".", "label": "", "kind": "unresolved", "n": n_null,
-                           "origin": {"origin": "data_file", "source": data_src,
-                                      "note": f"{n_null} system-missing values; neither the file nor the guide "
-                                              "says why."}})
-            report.append(f"`{release}` `{name}`: {n_null} system-missing values; unresolved")
+            values.append({"code": ".", "label": "", "kind": "missing", "missing_types": ["skipped", "not_asked"],
+                           "n": n_null,
+                           "origin": {"origin": "publisher", "source": guide_src,
+                                      "location": "Part III, Common Content, introduction",
+                                      "note": "Stata system missing. The guide: \"Observations with missing values "
+                                              "(not shown in the counts) are either due to respondent skipping and "
+                                              "missing due to the question not being asked to the respondent (e.g. "
+                                              "due to branching).\""}})
     if values:
         record["values"] = values
         fields.setdefault("values", {"origin": "data_file", "source": data_src,
