@@ -6,8 +6,15 @@ PAGE_HEADER = re.compile(r"^\S.*\S\s{5,}\d+\s*$")      # "Demographics          
 BULLET = re.compile(r"^\s*–\s+")
 
 
+LIGATURES = {"\ufb01": "fi", "\ufb02": "fl", "\ufb00": "ff", "\ufb03": "ffi", "\ufb04": "ffl"}
+
+
 def unwrap(lines):
-    return " ".join(" ".join(l.split()) for l in lines if l.strip()).strip()
+    """Join wrapped lines. pdftotext's ligature characters are layout, so they become letters."""
+    text = " ".join(" ".join(l.split()) for l in lines if l.strip()).strip()
+    for lig, letters in LIGATURES.items():
+        text = text.replace(lig, letters)
+    return text
 
 
 def cumulative_entries(text, names):
@@ -17,9 +24,12 @@ def cumulative_entries(text, names):
     in [brackets]; the guide says brackets mark summaries rather than verbatim text.
     The bullets after the tabulation give the years and the limitations.
     """
-    lines = [l for l in text.splitlines() if not PAGE_HEADER.match(l) and "\f" not in l[:1]]
-    lines = [l.replace("\f", "") for l in text.splitlines()]
-    lines = [l for l in lines if not PAGE_HEADER.match(l)]
+    lines, page = [], []
+    for number, text_of_page in enumerate(text.split("\f"), 1):
+        for line in text_of_page.splitlines():
+            if not PAGE_HEADER.match(line):
+                lines.append(line)
+                page.append(number)
     starts = {}
     for i, line in enumerate(lines):
         m = re.match(r"^(\w+): (\S.*)$", line)
@@ -44,7 +54,7 @@ def cumulative_entries(text, names):
             para.append(body[k])
             k += 1
         first = unwrap(para)
-        entry = {"title": title}
+        entry = {"title": title, "location": f"\"{name}: {title}\", p. {page[i]}"}
         if first.startswith("“") or first.startswith('"'):
             entry["question"] = first
         elif first.startswith("["):
