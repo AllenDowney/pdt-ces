@@ -1,0 +1,22 @@
+# Changes here will be overwritten by Copier; do not edit by hand.
+_commit: v0.1.0
+_src_path: /home/downey/PublicDataToolkit
+citation: ''
+dataset_id: ces
+dataset_url: https://dataverse.harvard.edu/dataverse/cces
+description: A large online survey of U.S. adults about elections and politics, run
+    by YouGov since 2006 (as the CCES until 2020), with a common-content file per
+    year and a cumulative file that harmonizes the years.
+form_label: ''
+publisher_name: Cooperative Election Study (Harvard Dataverse)
+publisher_url: https://cces.gov.harvard.edu/
+release_id: cumulative
+release_label: Cumulative CES Common Content, 2006-2025 (Dataverse version 12.0)
+source_format: dta
+source_id: cumulative-dta
+source_kind: data
+source_url: https://dataverse.harvard.edu/api/access/datafile/14076515
+standard_version: '0.1'
+terms_url: https://creativecommons.org/publicdomain/zero/1.0/
+title: Cooperative Election Study (CES)
+wave_label: year
