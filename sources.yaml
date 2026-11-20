@@ -3,15 +3,122 @@
 # Schema: PublicDataToolkit/schema/sources.schema.json. Edited by hand.
 #
 # Once a file is fetched, fill fetched_on, bytes and sha256 (pdt check C6).
-# An upstream package also needs `version` (a tag or commit), and documentation
-# says which releases it `documents`.
+# Dataverse files are fetched by file id through the access API.
 sources:
   - id: cumulative-dta
-    title: "Cumulative CES Common Content, 2006-2025 (Dataverse version 12.0), data"
+    title: "Cumulative CES Common Content, 2006-2025 (Dataverse version 12.0), Stata file"
     kind: data
-    format: dta
+    format: stata
     url: "https://dataverse.harvard.edu/api/access/datafile/14076515"
-    path: data/raw/CHANGE-ME
+    path: data/raw/cumulative_2006-2025.dta
     releases: ["cumulative"]
+    redistribution: unknown
+    acquisition: automated
+  - id: cumulative-guide
+    title: "Guide to the Cumulative Common Content of the Cooperative (Congressional) Election Study, 2026-07-14 (Kuriwaki)"
+    kind: codebook
+    format: pdf
+    url: "https://dataverse.harvard.edu/api/access/datafile/14076560"
+    path: data/raw/guide_cumulative_2006-2025.txt
+    convert: "pdftotext -layout"
+    releases: ["cumulative"]
+    documents: ["cumulative"]
+    redistribution: unknown
+    acquisition: automated
+  - id: cumulative-build-read
+    title: "cces_cumulative build code: 03_read-common.R (reads each year's file and its case id)"
+    kind: crosswalk
+    format: R
+    url: "https://raw.githubusercontent.com/kuriwaki/cces_cumulative/0fd71dbb5523a2795d57c3b2081b818acffd567c/03_read-common.R"
+    path: data/raw/cces_cumulative/03_read-common.R
+    version: 0fd71dbb5523a2795d57c3b2081b818acffd567c
+    releases: ["cumulative"]
+    documents: ["cumulative"]
+    redistribution: unknown
+    acquisition: automated
+    note: >
+      The cumulative file's own build code, by its author, linked from the guide as its
+      "source code repository". The repository has no license file. Its renames and recodes
+      are the source for this repo's derived_from links.
+  - id: cumulative-build-functions
+    title: "cces_cumulative build code: 05_functions-stack.R (std_name(): each year's renames and recodes)"
+    kind: crosswalk
+    format: R
+    url: "https://raw.githubusercontent.com/kuriwaki/cces_cumulative/0fd71dbb5523a2795d57c3b2081b818acffd567c/05_functions-stack.R"
+    path: data/raw/cces_cumulative/05_functions-stack.R
+    version: 0fd71dbb5523a2795d57c3b2081b818acffd567c
+    releases: ["cumulative"]
+    documents: ["cumulative"]
+    redistribution: unknown
+    acquisition: automated
+  - id: cumulative-build-stack
+    title: "cces_cumulative build code: 05_stack-cumulative.R (which variables are stacked, unrenamed)"
+    kind: crosswalk
+    format: R
+    url: "https://raw.githubusercontent.com/kuriwaki/cces_cumulative/0fd71dbb5523a2795d57c3b2081b818acffd567c/05_stack-cumulative.R"
+    path: data/raw/cces_cumulative/05_stack-cumulative.R
+    version: 0fd71dbb5523a2795d57c3b2081b818acffd567c
+    releases: ["cumulative"]
+    documents: ["cumulative"]
+    redistribution: unknown
+    acquisition: automated
+  - id: ces2020-dta
+    title: "Cooperative Election Study Common Content, 2020 (Dataverse version 4.0), Stata file"
+    kind: data
+    format: stata
+    url: "https://dataverse.harvard.edu/api/access/datafile/4949545"
+    path: data/raw/CES20_Common_OUTPUT_vv.dta
+    releases: ["2020"]
+    redistribution: unknown
+    acquisition: automated
+  - id: ces2020-guide
+    title: "CCES Guide 2020 (codebook and methodology)"
+    kind: codebook
+    format: pdf
+    url: "https://dataverse.harvard.edu/api/access/datafile/5793681"
+    path: data/raw/CCES_Guide_2020.txt
+    convert: "pdftotext -layout"
+    releases: ["2020"]
+    documents: ["2020"]
+    redistribution: unknown
+    acquisition: automated
+  - id: ces2022-dta
+    title: "Cooperative Election Study Common Content, 2022 (Dataverse version 4.0), Stata file"
+    kind: data
+    format: stata
+    url: "https://dataverse.harvard.edu/api/access/datafile/10140881"
+    path: data/raw/CCES22_Common_OUTPUT_vv_topost.dta
+    releases: ["2022"]
+    redistribution: unknown
+    acquisition: automated
+  - id: ces2022-guide
+    title: "CES Guide 2022 (codebook and methodology)"
+    kind: codebook
+    format: pdf
+    url: "https://dataverse.harvard.edu/api/access/datafile/7359254"
+    path: data/raw/CES_Guide_2022.txt
+    convert: "pdftotext -layout"
+    releases: ["2022"]
+    documents: ["2022"]
+    redistribution: unknown
+    acquisition: automated
+  - id: ces2024-dta
+    title: "Cooperative Election Study Common Content, 2024 (Dataverse version 9.0), Stata file"
+    kind: data
+    format: stata
+    url: "https://dataverse.harvard.edu/api/access/datafile/12050327"
+    path: data/raw/CCES24_Common_OUTPUT_vv_topost_final.dta
+    releases: ["2024"]
+    redistribution: unknown
+    acquisition: automated
+  - id: ces2024-guide
+    title: "CES 2024 Guide (codebook and methodology)"
+    kind: codebook
+    format: pdf
+    url: "https://dataverse.harvard.edu/api/access/datafile/12050326"
+    path: data/raw/CES_2024_GUIDE_vv.txt
+    convert: "pdftotext -layout"
+    releases: ["2024"]
+    documents: ["2024"]
     redistribution: unknown
     acquisition: automated

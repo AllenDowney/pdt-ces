@@ -104,11 +104,11 @@ cumulative:
     from: {2020: CC20_302, 2022: CC22_302, 2024: CC24_301}
     where: "05_functions-stack.R std_name(): economy_retro = CC20_302 (2020), CC22_302 (2022), CC24_301 (2024)"
     changes: [renamed]
-  intent_trn:
+  intent_turnout_self:
     measure: categorical
     from: {2020: CC20_363, 2022: CC22_363, 2024: CC24_363}
-    where: "05_functions-stack.R std_name(): intent_trn = CC20_363 (2020), CC22_363 (2022), CC24_363 (2024)"
-    changes: [renamed]
+    where: "05_functions-stack.R std_name(): intent_trn = CC20_363 (2020), CC22_363 (2022), CC24_363 (2024); then intent_turnout_self = factor of intent_trn's labels, merging 'I Plan to Vote Before November 3rd/8th/5th' into 'I plan to vote before Election Day'"
+    changes: [renamed, codes_changed, labels_changed]
   voted_pres_20:
     measure: categorical
     from: {2020: CC20_410, 2022: presvote20post, 2024: presvote20post}

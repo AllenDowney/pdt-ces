@@ -14,7 +14,13 @@ description: "A large online survey of U.S. adults about elections and politics,
 # shipping anything that depends on it.
 terms:
   url: "https://creativecommons.org/publicdomain/zero/1.0/"
-  summary: Not yet reviewed.
+  summary: >-
+    Not yet reviewed (for Allen). What the sources say: each Dataverse dataset used here
+    (Cumulative CES Common Content, doi:10.7910/DVN/II2DB6, and the Common Content of 2020,
+    2022 and 2024, doi:10.7910/DVN/E9N6PH, PR4L8P and X11EP6) shows the license "CC0 1.0"
+    in its Dataverse metadata, with no custom terms of use. The cumulative file's build code
+    (github.com/kuriwaki/cces_cumulative) has no license file; this repo reads it for the
+    variable mapping and doesn't redistribute it.
   data: unknown
   documentation: unknown
   metadata: unknown
@@ -22,10 +28,54 @@ terms:
 dimensions:
   wave:
     label: "year"
+    note: The year of the study. A cumulative-file row's wave is its `year`.
 releases:
   - id: "cumulative"
     label: "Cumulative CES Common Content, 2006-2025 (Dataverse version 12.0)"
+    date: "2026-07-14"
     status: current
-    sources: [cumulative-dta]
-    # A release with several data files lists `tables`, each with an id, label,
-    # sources, key and references (STANDARD.md §2.1). Examples: pdt-nsfg, pdt-fars.
+    sources: [cumulative-dta, cumulative-guide, cumulative-build-read, cumulative-build-functions, cumulative-build-stack]
+    tables:
+      - id: cumulative
+        label: "The cumulative common content (cumulative_2006-2025.dta), one row per respondent per year"
+        sources: [cumulative-dta]
+        key: [year, case_id]
+    design:
+      weights: [weight, weight_cumulative]
+      note: >
+        The guide: weight is each year's survey weight; weight_cumulative is weight divided by a
+        constant within each year, to make years comparable. The cumulative file has no strata or
+        PSU variables. Not in this slice: weight_post, vvweight, vvweight_post.
+  - id: "2020"
+    label: "Cooperative Election Study Common Content, 2020 (Dataverse version 4.0)"
+    status: current
+    sources: [ces2020-dta, ces2020-guide]
+    tables:
+      - id: common
+        label: "The 2020 common content (CES20_Common_OUTPUT_vv.dta)"
+        sources: [ces2020-dta]
+        key: [caseid]
+    design:
+      weights: [commonweight]
+  - id: "2022"
+    label: "Cooperative Election Study Common Content, 2022 (Dataverse version 4.0)"
+    status: current
+    sources: [ces2022-dta, ces2022-guide]
+    tables:
+      - id: common
+        label: "The 2022 common content (CCES22_Common_OUTPUT_vv_topost.dta)"
+        sources: [ces2022-dta]
+        key: [caseid]
+    design:
+      weights: [commonweight]
+  - id: "2024"
+    label: "Cooperative Election Study Common Content, 2024 (Dataverse version 9.0)"
+    status: current
+    sources: [ces2024-dta, ces2024-guide]
+    tables:
+      - id: common
+        label: "The 2024 common content (CCES24_Common_OUTPUT_vv_topost_final.dta)"
+        sources: [ces2024-dta]
+        key: [caseid]
+    design:
+      weights: [commonweight]
