@@ -31,6 +31,7 @@ terms:
 dimensions:
   wave:
     label: "year"
+    column: year
     note: The year of the study. A cumulative-file row's wave is its `year`.
 releases:
   - id: "cumulative"
